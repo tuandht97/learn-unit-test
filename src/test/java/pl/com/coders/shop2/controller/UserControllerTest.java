@@ -19,6 +19,7 @@ import pl.com.coders.shop2.domain.User;
 import pl.com.coders.shop2.domain.dto.UserDto;
 import pl.com.coders.shop2.service.UserService;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
