@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import pl.com.coders.shop2.domain.dto.UserDto;
 import pl.com.coders.shop2.service.UserService;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/user")
 public class UserController {

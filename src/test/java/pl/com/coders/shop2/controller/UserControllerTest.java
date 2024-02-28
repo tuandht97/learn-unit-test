@@ -1,6 +1,5 @@
 package pl.com.coders.shop2.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,14 +16,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import pl.com.coders.shop2.domain.User;
-import pl.com.coders.shop2.domain.dto.ProductDto;
 import pl.com.coders.shop2.domain.dto.UserDto;
-import pl.com.coders.shop2.service.ProductService;
 import pl.com.coders.shop2.service.UserService;
 
-import java.io.UnsupportedEncodingException;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;

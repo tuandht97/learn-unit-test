@@ -1,9 +1,10 @@
 package pl.com.coders.shop2.domain.dto;
 
-import lombok.*;
-import pl.com.coders.shop2.domain.OrderLineItem;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.Set;
 import java.util.UUID;
 
 @Data

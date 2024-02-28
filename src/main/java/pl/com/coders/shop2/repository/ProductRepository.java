@@ -11,6 +11,7 @@ import pl.com.coders.shop2.exceptions.ProductWithGivenTitleNotExistsException;
 
 import javax.persistence.*;
 import java.util.List;
+
 @Repository
 public class ProductRepository {
     @PersistenceContext
