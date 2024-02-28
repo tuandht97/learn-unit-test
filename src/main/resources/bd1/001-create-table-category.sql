@@ -1,0 +1,6 @@
+CREATE TABLE category (
+id BIGSERIAL PRIMARY KEY NOT NULL,
+name TEXT,
+created TIMESTAMP,
+updated TIMESTAMP
+);

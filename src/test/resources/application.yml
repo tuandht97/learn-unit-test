@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    username: sa
+    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
+    password: sa
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  #server:
+  #  port: 8083
+  #spring:
+  #  datasource:
+  #    username: postgres
+  #    password: 666666
+  #    url: jdbc:postgresql://localhost:5432/libria
+  jpa:
+    open-in-view: 'false'
+    show-sql: 'true'
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL92Dialect
+    hibernate:
+      ddl-auto: none
+  sql:
+    init:
+      mode: always
+
+  liquibase:
+    enabled: 'true'
+    change-log: classpath:liquibase-changeLog.xml
