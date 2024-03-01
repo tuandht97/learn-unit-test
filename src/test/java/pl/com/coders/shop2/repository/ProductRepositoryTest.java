@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 import pl.com.coders.shop2.domain.Category;
 import pl.com.coders.shop2.domain.CategoryType;
 import pl.com.coders.shop2.domain.Product;
@@ -17,6 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@Transactional
 class ProductRepositoryTest {
 
     @Autowired
@@ -77,6 +79,7 @@ class ProductRepositoryTest {
     @Test
     void shouldFindAllProductsInRepository() {
         List<Product> allProducts = productRepository.findAllProd();
+        System.out.println(allProducts);
         assertEquals(2, allProducts.size());
     }
 

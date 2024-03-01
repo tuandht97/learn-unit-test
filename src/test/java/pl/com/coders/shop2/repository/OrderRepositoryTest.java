@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 import pl.com.coders.shop2.domain.Cart;
 import pl.com.coders.shop2.domain.Order;
 import pl.com.coders.shop2.domain.OrderLineItem;
@@ -15,6 +16,7 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@Transactional
 class OrderRepositoryTest {
 
     @Autowired
