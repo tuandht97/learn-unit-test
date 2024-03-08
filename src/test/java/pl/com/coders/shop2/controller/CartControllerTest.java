@@ -62,6 +62,7 @@ class CartControllerTest {
     @Test
     void addProductToCart() throws ProductNotFoundException, Exception {
         when(cartService.addProductToCart(productTitle, amount)).thenReturn(cartDto);
+
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders
                         .post("/carts/{productTitle}/{amount}/addProductToCart", productTitle, amount)
                         .header(HttpHeaders.AUTHORIZATION, "Basic " + base64("john@example.com:pass1"))
@@ -69,8 +70,10 @@ class CartControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
+
         String responseContent = result.getResponse().getContentAsString();
         CartDto responseCart = objectMapper.readValue(responseContent, CartDto.class);
+
         assertEquals(cartDto.getUserName(), responseCart.getUserName());
         verify(cartService, times(1)).addProductToCart(productTitle,amount);
     }

@@ -49,20 +49,24 @@ class ProductRepositoryTest {
     @Test
     void shouldGetProductFromRepositoryById() {
         Product productById = productRepository.getProductById(1L);
+
         assertNotNull(productById);
     }
 
     @Test
     void shouldGetProductFromRepository() {
         List<Product> foundProducts = productRepository.getProductsByCategory(categoryType);
+
         assertThat(foundProducts).isNotNull();
     }
 
     @Test
     void shouldDeleteProductFromRepository() {
         Long productIdToDelete = 2L;
+
         Product found = productRepository.getProductById(productIdToDelete);
         boolean deletedProduct = productRepository.delete(found.getId());
+
         assertTrue(deletedProduct);
     }
 
@@ -72,6 +76,7 @@ class ProductRepositoryTest {
         Product newProduct = new Product(category, "Product15", "Description13", BigDecimal.valueOf(500), 5);
 
         Product updatedProduct = productRepository.update(newProduct, exitingProduct.getId());
+
         assertNotNull(updatedProduct);
         assertEquals(exitingProduct.getId(), updatedProduct.getId());
     }
@@ -80,12 +85,14 @@ class ProductRepositoryTest {
     void shouldFindAllProductsInRepository() {
         List<Product> allProducts = productRepository.findAllProd();
         System.out.println(allProducts);
+
         assertEquals(2, allProducts.size());
     }
 
     @Test
     void add_WithNullProductName_ShouldThrowException() {
         Product productWithNullName = new Product(category, null, "Description13", BigDecimal.valueOf(200), 50);
+
         assertThrows(ProductWithGivenTitleNotExistsException.class, () -> productRepository.add(productWithNullName));
     }
 

@@ -26,8 +26,11 @@ class UserRepositoryTest {
     @Test
     void createAndFindById() {
         User createdUser = userRepository.create(user);
+
         assertNotNull(createdUser.getId());
+
         User foundUser = userRepository.findById(createdUser.getId());
+
         assertNotNull(foundUser);
         assertEquals(createdUser.getId(), foundUser.getId());
         assertEquals(createdUser.getEmail(), foundUser.getEmail());
@@ -37,7 +40,9 @@ class UserRepositoryTest {
     void findByEmail() {
         String userEmail = "john@example.com";
         createAndFindById();
+
         User foundUserByEmail = userRepository.findByEmail(userEmail);
+
         assertNotNull(foundUserByEmail);
     }
 }

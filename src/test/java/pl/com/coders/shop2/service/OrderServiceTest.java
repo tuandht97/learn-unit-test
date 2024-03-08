@@ -99,9 +99,7 @@ class OrderServiceTest {
 
         OrderDto orderFromCart = orderService.createOrderFromCart(userEmail);
         assertNotNull(orderFromCart);
-
         verify(userRepository, times(1)).findByEmail(anyString());
-
         verify(cartService, times(1)).getCartForAuthUser(userEmail);
         verify(orderRepository, times(1)).createOrderFromCart(any());
         verify(orderMapper, times(1)).orderToDto(order);
@@ -116,6 +114,7 @@ class OrderServiceTest {
         when(orderRepository.createOrderLineItem(any(), any(), anyInt())).thenReturn(orderLineItem);
 
         List<OrderLineItem> result = orderService.createOrderLineItems(cartDto, order, orderLineItems);
+
         assertNotNull(result);
     }
 
@@ -123,6 +122,7 @@ class OrderServiceTest {
     void testDelete() {
         UUID orderId = order.getId();
         when(orderRepository.delete(orderId)).thenReturn(true);
+
         assertTrue(orderService.delete(orderId));
     }
 
@@ -130,6 +130,7 @@ class OrderServiceTest {
     @Test
     void testGetOrdersByUser() {
         when(orderRepository.getOrdersByUser(anyString())).thenReturn(new Order());
+
         assertDoesNotThrow(() -> orderService.getOrdersByUser(userEmail));
     }
 }

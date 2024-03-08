@@ -58,8 +58,10 @@ class UserControllerTest {
                         .content(objectMapper.writeValueAsString(userDto)))
                 .andExpect(status().isOk())
                 .andReturn();
+
         String responseContent = result.getResponse().getContentAsString();
         UserDto responseUser = objectMapper.readValue(responseContent, UserDto.class);
+
         assertEquals(userDto.getEmail(), responseUser.getEmail());
         verify(userService, times(1)).create(any());
     }

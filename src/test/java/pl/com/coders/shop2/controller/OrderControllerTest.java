@@ -70,7 +70,7 @@ class OrderControllerTest {
         mockMvc.perform(MockMvcRequestBuilders
                         .post("/orders/saveOrder/{userEmail}", userEmail)
                         .header(HttpHeaders.AUTHORIZATION, "Basic " + base64("john@example.com:pass1"))
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
@@ -88,7 +88,7 @@ class OrderControllerTest {
         mockMvc.perform(MockMvcRequestBuilders
                         .delete("/orders/delete/{orderId}", orderId)
                         .header(HttpHeaders.AUTHORIZATION, "Basic " + base64("john@example.com:pass1"))
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
 
         // Then

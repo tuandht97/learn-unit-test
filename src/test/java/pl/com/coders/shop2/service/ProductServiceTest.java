@@ -52,7 +52,9 @@ class ProductServiceTest {
         when(productMapper.dtoToProduct(productDto)).thenReturn(product);
         when(productRepository.add(product)).thenReturn(product);
         when(productMapper.productToDto(product)).thenReturn(productDto);
+
         ProductDto createdProduct = productService.create(productDto);
+
         assertNotNull(createdProduct);
         assertEquals(productDto.getName(), createdProduct.getName());
         verify(categoryRepository, times(1)).findById((2L));
@@ -67,7 +69,9 @@ class ProductServiceTest {
         Long id = 1L;
         when(productRepository.getProductById(any())).thenReturn(product);
         when(productMapper.productToDto(any())).thenReturn(productDto);
+
         ProductDto resultProduct = productService.getById(id);
+
         assertNotNull(resultProduct);
         assertSame(productDto.getName(), resultProduct.getName());
         verify(productRepository, times(1)).getProductById(id);
@@ -79,7 +83,9 @@ class ProductServiceTest {
         String name = "Sample product";
         when(productRepository.getProductByName(any())).thenReturn(product);
         when(productMapper.productToDto(any())).thenReturn(productDto);
+
         ProductDto resultProduct = productService.getByName(name);
+
         assertNotNull(resultProduct);
         assertSame(productDto.getName(), resultProduct.getName());
         verify(productRepository, times(1)).getProductByName(name);
@@ -90,7 +96,9 @@ class ProductServiceTest {
     void getByCategory() {
         CategoryType category = categoryType.EDUKACJA;
         when(productRepository.getProductsByCategory(category)).thenReturn(allProducts);
+
         List<ProductDto> resultProducts = productService.getProductsByCategory(category);
+
         assertNotNull(resultProducts);
         verify(productRepository, times(1)).getProductsByCategory(category);
     }
@@ -99,7 +107,9 @@ class ProductServiceTest {
     void delete() {
         Long id = 1L;
         when(productRepository.delete(id)).thenReturn(true);
+
         boolean resultProduct = productService.delete(id);
+
         assertTrue(resultProduct);
         verify(productRepository, times(1)).delete(id);
     }
@@ -110,7 +120,9 @@ class ProductServiceTest {
         when(productMapper.dtoToProduct(any())).thenReturn(product);
         when(productRepository.update(any(), any())).thenReturn(product);
         when(productMapper.productToDto(any())).thenReturn(productDto);
+
         ProductDto updatedProduct = productService.update(productDto, productId);
+
         assertNotNull(updatedProduct);
         assertSame(productDto, updatedProduct);
         verify(productMapper, times(1)).dtoToProduct(productDto);

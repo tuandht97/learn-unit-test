@@ -43,6 +43,7 @@ class OrderRepositoryTest {
     @Test
     void createOrderFromCart() {
         Order orderByUser = orderRepository.createOrderFromCart(cart);
+
         assertNotNull(orderByUser);
     }
 
@@ -52,18 +53,21 @@ class OrderRepositoryTest {
         Product product = productRepository.getProductById(1L);
         int quantity = 20;
         OrderLineItem orderLineItem = orderRepository.createOrderLineItem(orderByUser, product, quantity);
+
         assertNotNull(orderLineItem);
     }
 
     @Test
     void delete() {
         boolean deletedOrders = orderRepository.delete(UUID.fromString("a0a1ab07-d158-4e89-8b42-2fd8c677147f"));
+
         assertTrue(deletedOrders);
     }
 
     @Test
     void findAllOrders() {
         List<Order> orders = orderRepository.findAllOrders();
+
         assertEquals(2, orders.size());
     }
 }

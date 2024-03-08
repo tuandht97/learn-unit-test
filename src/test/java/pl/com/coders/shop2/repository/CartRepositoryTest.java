@@ -51,12 +51,14 @@ class CartRepositoryTest {
     void updateCart() {
         Cart newCart = new Cart(1, BigDecimal.TEN, user, LocalDateTime.now(), LocalDateTime.now());
         Cart updatedCart = cartRepository.updateCart(createdCart);
+
         assertEquals(updatedCart.getUser().getEmail(), user.getEmail());
     }
 
     @Test
     void createCartLineItem() {
         CartLineItem createdCartLineItem = cartRepository.createCartLineItem(1000, createdCart, product);
+
         assertNotNull(createdCartLineItem);
         assertEquals(createdCart, createdCartLineItem.getCart());
     }
@@ -66,6 +68,7 @@ class CartRepositoryTest {
         CartLineItem createdCartLineItem = cartRepository.createCartLineItem(1000, createdCart, product);
         CartLineItem newCartLineItem = new CartLineItem(1L, createdCart, product, 20, BigDecimal.TEN, 1);
         CartLineItem updatedCartLineItem = cartRepository.updateCartLineItem(10, createdCartLineItem, product);
+
         assertNotNull(updatedCartLineItem);
         assertEquals(updatedCartLineItem.getCartIndex(), newCartLineItem.getCartIndex());
     }
@@ -74,6 +77,7 @@ class CartRepositoryTest {
     void getCartForAuthUser() {
         String authenticatedUser = SecurityContextHolder.getContext().getAuthentication().getName();
         Cart cartForUser = cartRepository.getCartForAuthUser(authenticatedUser);
+
         assertNotNull(cartForUser);
         assertTrue(!cartForUser.getCartLineItems().isEmpty(), "Cart should not be empty");
 
@@ -82,12 +86,14 @@ class CartRepositoryTest {
     @Test
     void deleteCartAndItems() {
         boolean deletedCart = cartRepository.deleteCartAndItems(2L);
+
         assertTrue(deletedCart);
     }
 
     @Test
     void getCartByCartId() {
         Cart cartById = cartRepository.getCartByCartId(1L);
+
         assertNotNull(cartById);
     }
 }

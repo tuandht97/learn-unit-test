@@ -72,8 +72,10 @@ class ProductControllerTest {
                         .content(objectMapper.writeValueAsString(productDto)))
                 .andExpect(status().isOk())
                 .andReturn();
+
         String responseContent = result.getResponse().getContentAsString();
         ProductDto responseProduct = objectMapper.readValue(responseContent, ProductDto.class);
+
         assertEquals(productDto.getName(), responseProduct.getName());
         verify(productService, times(1)).create(any());
     }
@@ -119,25 +121,25 @@ class ProductControllerTest {
 
     @Test
     void update() throws Exception {
-            Long productId = 1L;
-            ProductDto updatedProduct = createSampleDtoProduct(categoryType);
-            String json = objectMapper.writeValueAsString(updatedProduct);
+        Long productId = 1L;
+        ProductDto updatedProduct = createSampleDtoProduct(categoryType);
+        String json = objectMapper.writeValueAsString(updatedProduct);
 
-            when(productService.update(any(), eq(productId))).thenReturn(updatedProduct);
+        when(productService.update(any(), eq(productId))).thenReturn(updatedProduct);
 
-            MvcResult result = mockMvc.perform(MockMvcRequestBuilders.put("/product/{id}", productId)
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(json))
-                    .andExpect(status().isOk())
-                    .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                    .andReturn();
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.put("/product/{id}", productId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
 
-            String responseContent = result.getResponse().getContentAsString();
-            ProductDto responseProduct = objectMapper.readValue(responseContent, ProductDto.class);
+        String responseContent = result.getResponse().getContentAsString();
+        ProductDto responseProduct = objectMapper.readValue(responseContent, ProductDto.class);
 
         assertEquals(productDto.getName(), responseProduct.getName());
         verify(productService, times(1)).update(any(), any());
-         }
+    }
 
     private ProductDto createSampleDtoProduct(CategoryType categoryType) {
         return ProductDto.builder()
@@ -164,6 +166,7 @@ class ProductControllerTest {
                 .name("Sample Category")
                 .build();
     }
+
     private String base64(String value) {
         return Base64.getEncoder().encodeToString(value.getBytes());
     }

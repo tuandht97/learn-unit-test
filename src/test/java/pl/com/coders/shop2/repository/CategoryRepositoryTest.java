@@ -20,6 +20,7 @@ class CategoryRepositoryTest {
     void getCategoryById() {
         Long categoryId = 1L;
         Category category = categoryRepository.getCategoryById(categoryId);
+
         assertNotNull(category);
     }
 
@@ -27,6 +28,7 @@ class CategoryRepositoryTest {
     void foundByName() {
         String categoryName = "ELEKTRONIKA";
         boolean found = categoryRepository.existsByName(categoryName);
+
         assertTrue(found);
     }
 }
